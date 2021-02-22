@@ -161,14 +161,14 @@ var html = '<div class="ace_search right">\
         <button type="button" action="findAll" class="ace_searchbtn" title="Alt-Enter">All</button>\
     </div>\
     <div class="ace_replace_form">\
-        <input class="ace_search_field" placeholder="Replace with" spellcheck="false"></input>\
-        <button type="button" action="replaceAndFindNext" class="ace_replacebtn">Replace</button>\
-        <button type="button" action="replaceAll" class="ace_replacebtn">All</button>\
+        <input class="ace_search_field" placeholder="替换" spellcheck="false"></input>\
+        <button type="button" action="replaceAndFindNext" class="ace_replacebtn">替换</button>\
+        <button type="button" action="replaceAll" class="ace_replacebtn">全部替换</button>\
     </div>\
     <div class="ace_search_options">\
-        <span action="toggleRegexpMode" class="ace_button" title="RegExp Search">.*</span>\
-        <span action="toggleCaseSensitive" class="ace_button" title="CaseSensitive Search">Aa</span>\
-        <span action="toggleWholeWords" class="ace_button" title="Whole Word Search">\\b</span>\
+        <span action="toggleRegexpMode" class="ace_button" title="使用正则表达式">.*</span>\
+        <span action="toggleCaseSensitive" class="ace_button" title="区分大小写">Aa</span>\
+        <span action="toggleWholeWords" class="ace_button" title="全字匹配">\\b</span>\
     </div>\
 </div>'.replace(/>\s+/g, ">");
 
@@ -358,7 +358,8 @@ var SearchBox = function(editor, range, showReplaceForm) {
         dom.setCssClass(this.searchBox, "ace_nomatch", noMatch);
         this.editor._emit("findSearchBox", { match: !noMatch });
         this.highlight();
-        this.hide();
+        this.editor.focus();
+        //this.hide();
     };
     this.replace = function() {
         if (!this.editor.getReadOnly())

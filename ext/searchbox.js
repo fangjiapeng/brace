@@ -165,24 +165,24 @@ dom.importCssString(searchboxCss, "ace_searchbox");
 var html = '<div class="ace_search right">\
     <span action="hide" class="ace_searchbtn_close"></span>\
     <div class="ace_search_form">\
-        <input class="ace_search_field" placeholder="Search for" spellcheck="false"></input>\
+        <input class="ace_search_field" placeholder="查找" spellcheck="false"></input>\
         <span action="findPrev" class="ace_searchbtn prev"></span>\
         <span action="findNext" class="ace_searchbtn next"></span>\
-        <span action="findAll" class="ace_searchbtn" title="Alt-Enter">All</span>\
+        <span action="findAll" class="ace_searchbtn" title="Alt-Enter">查找全部</span>\
     </div>\
     <div class="ace_replace_form">\
-        <input class="ace_search_field" placeholder="Replace with" spellcheck="false"></input>\
-        <span action="replaceAndFindNext" class="ace_searchbtn">Replace</span>\
-        <span action="replaceAll" class="ace_searchbtn">All</span>\
+        <input class="ace_search_field" placeholder="替换" spellcheck="false"></input>\
+        <span action="replaceAndFindNext" class="ace_searchbtn">替换</span>\
+        <span action="replaceAll" class="ace_searchbtn">全部替换</span>\
     </div>\
     <div class="ace_search_options">\
-        <span action="toggleReplace" class="ace_button" title="Toggel Replace mode"\
+        <span action="toggleReplace" class="ace_button" title="切换替换模式"\
             style="float:left;margin-top:-2px;padding:0 5px;">+</span>\
         <span class="ace_search_counter"></span>\
-        <span action="toggleRegexpMode" class="ace_button" title="RegExp Search">.*</span>\
-        <span action="toggleCaseSensitive" class="ace_button" title="CaseSensitive Search">Aa</span>\
-        <span action="toggleWholeWords" class="ace_button" title="Whole Word Search">\\b</span>\
-        <span action="searchInSelection" class="ace_button" title="Search In Selection">S</span>\
+        <span action="toggleRegexpMode" class="ace_button" title="使用正则表达式">.*</span>\
+        <span action="toggleCaseSensitive" class="ace_button" title="区分大小写">Aa</span>\
+        <span action="toggleWholeWords" class="ace_button" title="全字匹配">\\b</span>\
+        <span action="searchInSelection" class="ace_button" title="在选定内容中查找">S</span>\
     </div>\
 </div>'.replace(/> +/g, ">");
 
@@ -445,7 +445,8 @@ var SearchBox = function(editor, range, showReplaceForm) {
         dom.setCssClass(this.searchBox, "ace_nomatch", noMatch);
         this.editor._emit("findSearchBox", { match: !noMatch });
         this.highlight();
-        this.hide();
+        this.editor.focus();
+        //this.hide();
     };
     this.replace = function() {
         if (!this.editor.getReadOnly())
